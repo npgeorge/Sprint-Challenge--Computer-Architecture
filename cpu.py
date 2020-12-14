@@ -95,25 +95,28 @@ class CPU:
 
 		if IR == MUL:
 			self.registers[operand_a] *= self.registers[operand_b]
-
+        
+        # compare
 		elif IR == CMP:
+            # if op a is less than op b
+            # create flags, set index 5 to 1
 			if self.registers[operand_a] < self.registers[operand_b]:
 				self.flags = [0] * 8
 				self.flags[5] = 1
 
+            # if op a is greater than op b
+            # same thing
 			elif self.registers[operand_a] > self.registers[operand_b]:
 				self.flags = [0] * 8
 				self.flags[6] = 1
 
+            # same thing, except no comparison this time
 			else:
 				self.flags = [0] * 8
 				self.flags[7] = 1
 
 		elif IR == ADD:
 			self.registers[operand_a] += self.registers[operand_b]
-
-		elif IR == AND:
-			self.registers[operand_a] = self.registers[operand_a] & self.registers[operand_b]
 
 		elif IR == DIV:
 			if self.registers[operand_b] == 0:
